@@ -3,6 +3,7 @@ function Gnome() {
   this.seed=millis(); 
   this.gWidth; 
   this.gHeight=10;
+  this.colorG=color(round(random(10))*10,30,100);
 }
 Gnome.prototype.init =function() {
   this.gWidth=this.gHeight/2; 
@@ -21,7 +22,8 @@ Gnome.prototype.init =function() {
 }
 Gnome.prototype.show=function() {
 
-
+fill(this.colorG);
+stroke(this.colorG);
   for (var i=0; i<this.gWidth; i++) {
 
     for (var j=0; j<this.gHeight; j++) {
@@ -32,14 +34,20 @@ Gnome.prototype.show=function() {
     }
   }
 }
-Gnome.prototype.getChild= function(){
- for (var i=0; i<this.gWidth; i++) {
+Gnome.prototype.getChild=function() {
+ /* for (var i=0; i<this.gWidth; i++) {
 
     for (var j=0; j<this.gHeight; j++) {
       this.evoleV=random(10);
       this.boolT=random(2);
-      this.parentB=this.body[i][j];
-      if (this.evolveV>9)this.boolT>1?true:false;
+
+      /*if (this.evolveV>9) {
+        if (this.boolT>1) {
+          this.body[i][j]=true;
+        } else {
+          this.body[i][j]=false;
+        }
+      }
     }
-  }
+  }*/
 }
