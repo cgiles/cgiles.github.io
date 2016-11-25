@@ -35,10 +35,10 @@ stroke(this.colorG);
   }
 }
 Gnome.prototype.getChild=function() {
- /* for (var i=0; i<this.gWidth; i++) {
+  for (var i=0; i<this.gWidth; i++) {
 
     for (var j=0; j<this.gHeight; j++) {
-      this.evoleV=random(10);
+      /*this.evoleV=random(10);
       this.boolT=random(2);
 
       /*if (this.evolveV>9) {
@@ -47,7 +47,7 @@ Gnome.prototype.getChild=function() {
         } else {
           this.body[i][j]=false;
         }
-      }
+      }*/
     }
-  }*/
+  }
 }
