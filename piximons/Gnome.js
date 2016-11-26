@@ -24,6 +24,7 @@ Gnome.prototype.show=function() {
 
 fill(this.colorG);
 stroke(this.colorG);
+
   for (var i=0; i<this.gWidth; i++) {
 
     for (var j=0; j<this.gHeight; j++) {
