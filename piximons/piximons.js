@@ -33,7 +33,7 @@ function draw() {
   fill(0,0,100); 
  //  text(frameCount%upgradeTime,10,10);
    
-  // text(idUpgraded,20,10);
+  text(idUpgraded,20,10);
 translate(leftO, upO); 
 var k=0;
   for (var i=0; i<cols; i++) {
@@ -42,7 +42,7 @@ var k=0;
       translate(i*space, j*space); 
       push();
       noFill();
-      //if(k==idUpgraded)rect(0,0,100,100);
+       //if(k==idUpgraded)rect(0,0,100,100);
       pop();
       mesGnomes[k].show(); 
       pop();
