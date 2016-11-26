@@ -33,7 +33,7 @@ function draw() {
   fill(0,0,100); 
  //  text(frameCount%upgradeTime,10,10);
    
-  text(idUpgraded,20,10);
+ // text(idUpgraded,20,10);
 translate(leftO, upO); 
 var k=0;
   for (var i=0; i<cols; i++) {
