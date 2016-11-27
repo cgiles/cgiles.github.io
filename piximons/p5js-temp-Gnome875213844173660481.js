@@ -40,7 +40,7 @@ Gnome.prototype.getChild=function() {
 
     for (var j=0; j<this.gHeight; j++) {
       this.evolveV=random(10);
-      this.boolT=random(2);
+      this.boolT=random(2.0);
 
       if (this.evolveV>9) {
         if (this.boolT>1) {
