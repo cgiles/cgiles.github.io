@@ -13,19 +13,33 @@ var shouldSave=false;
 
 var gui;
 
+var settings;
+
+var Setting=function(){
+this.modulo=10;
+this.multipliant=2;
+this.showDots=true;
+this.showCircle=true;
+
+}
 function setup() {
   createCanvas(windowWidth, windowHeight);
   smooth();
   ellipseMode(CENTER);
+  settings=new Setting();
   radius=height/2-50;
   modulo=0010;
   multipliant=002;
   calculateDots();
-  gui=createGui('Settings');
-  gui.addGlobals('modulo', 'multipliant', 'showDots', 'showCircle');
-
+  
   startColor=color(255, 0, 0);
   endColor=color(0, 0, 255);
+  
+  gui=new dat.GUI()
+  gui.add(settings,'modulo',3,255).step(1);
+  gui.add(settings,'multipliant',3,255).step(1);
+  gui.add(settings,'showCircle');
+  gui.add(settings,'showDots');
 }
 
 function draw() {
@@ -35,15 +49,15 @@ function draw() {
   //for(var i=0;i<dotsX.length;i++)ellipse(dotsX[i],dotsY[i],100,100);
   stroke(0);
   noFill();
-  if (showCircle)ellipse(0, 0, radius*2, radius*2);
-  drawLines(multipliant);
-  if (showDots)drawDots();
+  if (settings.showCircle)ellipse(0, 0, radius*2, radius*2);
+  drawLines(settings.multipliant);
+  if (settings.showDots)drawDots();
 }
 function calculateDots() {
   dotsX=[];
   dotsY=[];
-  for (var i=0; i<modulo; i++) {
-    var angle=(360/modulo)*i;
+  for (var i=0; i<settings.modulo; i++) {
+    var angle=(360/settings.modulo)*i;
     dotsX.push(cos(radians(angle-90))*radius);
     dotsY.push(sin(radians(angle-90))*radius);
   }
@@ -59,15 +73,18 @@ function drawDots() {
   }
 }
 function drawLines() {
-  for (var i=0; i<=modulo; i++) {
-    var cStroke=lerpColor(startColor, endColor, i/modulo);
+  for (var i=0; i<=settings.modulo; i++) {
+    var cStroke=lerpColor(startColor, endColor, i/settings.modulo);
     stroke(cStroke);
-    var result=i*multipliant;
-    result=result%modulo;
+    var result=i*settings.multipliant;
+    result=result%settings.modulo;
     beginShape();
-    vertex(dotsX[i%modulo], dotsY[i%modulo]);
+    vertex(dotsX[i%settings.modulo], dotsY[i%settings.modulo]);
     vertex(dotsX[result], dotsY[result]);
     endShape();
     //    line(dotsX[i%modulo], dotsY[i%modulo], dotsX[result], dotsY[result]);
   }
+}
+function keyReleased(){
+createA("http://www.google.com");
 }
