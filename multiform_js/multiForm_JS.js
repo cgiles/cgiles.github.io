@@ -20,7 +20,10 @@ this.modulo=10;
 this.multipliant=2;
 this.showDots=true;
 this.showCircle=true;
-
+this.random=function(){
+  this.modulo=parseInt(random(3,255));
+  this.multipliant=parseInt(random(2,255));
+}
 }
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -36,10 +39,11 @@ function setup() {
   endColor=color(0, 0, 255);
   
   gui=new dat.GUI()
-  gui.add(settings,'modulo',3,255).step(1);
-  gui.add(settings,'multipliant',3,255).step(1);
+  gui.add(settings,'modulo',3,255).step(1).listen();
+  gui.add(settings,'multipliant',2,255).step(1).listen();
   gui.add(settings,'showCircle');
   gui.add(settings,'showDots');
+  gui.add(settings,'random');
 }
 
 function draw() {
@@ -84,7 +88,4 @@ function drawLines() {
     endShape();
     //    line(dotsX[i%modulo], dotsY[i%modulo], dotsX[result], dotsY[result]);
   }
-}
-function keyReleased(){
-createA("http://www.google.com");
 }
