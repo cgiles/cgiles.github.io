@@ -34,10 +34,10 @@ function setup() {
   modulo=0010;
   multipliant=002;
   calculateDots();
-  
+
   startColor=color(255, 0, 0);
   endColor=color(0, 0, 255);
-  
+
   gui=new dat.GUI()
   gui.add(settings,'modulo',3,255).step(1).listen();
   gui.add(settings,'multipliant',2,255).step(1).listen();
@@ -88,4 +88,7 @@ function drawLines() {
     endShape();
     //    line(dotsX[i%modulo], dotsY[i%modulo], dotsX[result], dotsY[result]);
   }
+}
+function keyPressed(){
+  console.log("yolo");
 }
