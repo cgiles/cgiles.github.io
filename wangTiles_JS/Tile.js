@@ -18,7 +18,7 @@ function Tile() {
     var result=false;
     if (this.binary.substring(3).localeCompare('1')==0)result=true;
 
-    return result;
+    return result; 
   }  
   this.returnDown=function() {
     var result=false;

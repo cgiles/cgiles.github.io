@@ -13,7 +13,7 @@ function preload() {
     var name="assets/pTiles/"+nf(i, 2)+".png";
     var tileT=loadImage(name);
     tileSet.push(tileT);
-  }
+  } 
   for(var i=0;i<3;i++){
     console.log(i);
   var name="assets/pacman"+nf(i, 2)+".png";

@@ -23,7 +23,7 @@ function Walker() {
     this.destination=this.position.copy();
   }
   this.display=function() {
-
+ 
     push();
     translate(this.position.x, this.position.y);
     rotate(this.pmAngle);
