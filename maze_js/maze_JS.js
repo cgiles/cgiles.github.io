@@ -30,8 +30,7 @@ function draw() {
       idTile++;
     }
   }
-  fill(255);
-  text(str(frameRate()), 10, 10);
+  
   if(listCells.length<nbCol*nbRow)lookAround(listCells.length-1);
 }
 function init() {
@@ -47,7 +46,7 @@ function lookAround(id) {
   var posY=Math.trunc(listCells[id]/nbCol);
   var pos=listCells[id];
   var voisins=[(posX!=nbCol-1)?pos+1:-1, (posY!=0)?pos-nbCol:-1, (posX!=0)?pos-1:-1, (posY!=nbRow-1)?pos+nbCol:-1];
-   
+
   for ( var i=0; i<voisins.length; i++){
     voisinsDirection.create(str(voisins[i]), i);
 console.log( "voisin :"+nf(voisins[i],1)+":"+i+":"+voisinsDirection.get(str(voisins[i]))+":"+voisinsDirection.key(i));
@@ -62,9 +61,9 @@ console.log( "voisin :"+nf(voisins[i],1)+":"+i+":"+voisinsDirection.get(str(vois
     var wallsToFall=getVoisinsDirections(voisinsDispo[tId], voisinsDirection);
     valueWalls[listCells[id]]+=wallsToFall[0];
     valueWalls[voisinsDispo[tId]]+=wallsToFall[1];
-   
+
     listCells.push(voisinsDispo[tId]);
-    
+
   }else if(id>0){
   id--;
   lookAround(id);
