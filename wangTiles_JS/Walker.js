@@ -23,15 +23,16 @@ function Walker() {
     this.destination=this.position.copy();
   }
   this.display=function() {
- 
+
     push();
     translate(this.position.x, this.position.y);
     rotate(this.pmAngle);
-    image(pacManSet[this.playList[this.playPos%this.playList.length]], 0,0, 20, 20);
+    image(pacManSet[this.playList[this.playPos%this.playList.length]], 0, 0, 20, 20);
     //fill(255, 0, 0);
     //ellipse(this.position.x, this.position.y, 10, 10);
     pop();
   }
+
   this.update=function() {
     if (frameCount%10==0)this.playPos++;
     console.log(" tileX :"+this.tileX+" tileY :"+this.tileY+" id:"+this.tileId+" pid:"+this.prevTileId+"dest:"+this.destination);
@@ -44,23 +45,31 @@ function Walker() {
       if (this.possibleWay.length==1)this.destination.set(this.possibleWay[0].col*32+16, this.possibleWay[0].row*32+16);
       if (this.possibleWay.length>1) {
         this.rId=0;
-        do {
-          this.rId=Math.trunc(random(this.possibleWay.length));
-          this.destination.set(this.possibleWay[this.rId].col*32+16, this.possibleWay[this.rId].row*32+16);
-        } while (this.possibleWay[this.rId].nb==this.prevTileId);
+
+        this.possibleWay.sort(weightTile);
+        this.lId=this.possibleWay[0].nb;
+        this.tiles[this.lId].weight=0;
+        this.destination.set(this.possibleWay[0].col*32+16, this.possibleWay[0].row*32+16);
+        // this.rId=Math.trunc(random(this.possibleWay.length));
+        // this.destination.set(this.possibleWay[this.rId].col*32+16, this.possibleWay[this.rId].row*32+16);
+        if (this.possibleWay[0].nb==this.prevTileId) {
+          this.lId=this.possibleWay[1].nb;
+          this.tiles[this.lId].weight=0;
+          this.destination.set(this.possibleWay[1].col*32+16, this.possibleWay[1].row*32+16);
+        }
       }
     } else if (this.position.dist(this.destination)>1.0) {
       this.position.lerp(this.destination, 0.1);
     } else {
       this.position=this.destination.copy();
     }
-    this.reference=createVector(1,0);
-   this.destNorma=createVector(0,0);
+    this.reference=createVector(1, 0);
+    this.destNorma=createVector(0, 0);
     this.destNorma=this.destination.copy();
     this.destNorma.sub(this.position);
     this.destNorma.normalize();
-    this.pmAngle=p5.Vector.angleBetween(this.destNorma,this.reference);
-    if(degrees(this.pmAngle)==90&&this.destination.y<this.position.y)this.pmAngle*=-1;
+    this.pmAngle=p5.Vector.angleBetween(this.destNorma, this.reference);
+    if (degrees(this.pmAngle)==90&&this.destination.y<this.position.y)this.pmAngle*=-1;
   }
   this.lookAround=function() {
     this.aroundTile=[];
